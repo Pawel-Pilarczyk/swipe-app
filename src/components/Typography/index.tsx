@@ -16,6 +16,7 @@ export const Typography = ({
     <Text
       style={[
         style,
+        styles.text,
         typeStyles[type],
         {
           fontSize: scaling.hs(+size),
@@ -31,6 +32,10 @@ export const Typography = ({
 };
 
 const styles = StyleSheet.create({
+  text: {
+    padding: 0,
+    margin: 0,
+  },
   textCentered: {
     textAlign: 'center',
   },

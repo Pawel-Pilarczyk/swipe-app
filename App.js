@@ -1,16 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
-import {Button, Typography} from 'src/components';
-import {FireIcon} from 'src/assets/svg';
+import {Button} from 'src/components/Button';
 
 export const App = () => {
   return (
     <View>
-      <FireIcon />
-      <Typography color="blue" size="32" centered type="bold">
-        Hello
-      </Typography>
-      <Button />
+      <Button title="Hello" type="default" icon="fire" />
     </View>
   );
 };
