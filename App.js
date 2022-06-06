@@ -1,11 +1,28 @@
-import React from 'react';
-import {Text, View} from 'react-native';
-import {FireIcon} from 'src/assets/svg';
+import React, { useState } from 'react';
+import { StyleSheet, ScrollView } from 'react-native';
+import { Button } from 'src/components/Button';
+import { Input } from 'src/components/Input';
 
 export const App = () => {
+  const [text, setText] = useState('');
   return (
-    <View>
-      <FireIcon />
-    </View>
+    <ScrollView style={styles.wrapper}>
+      <Input
+        text={text}
+        type="text"
+        label="Test"
+        onChangeText={t => setText(t)}
+        textArea
+        error="er"
+      />
+      <Button />
+    </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    paddingHorizontal: 20,
+    flex: 1,
+  },
+});
