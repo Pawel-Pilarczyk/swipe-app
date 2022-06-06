@@ -25,6 +25,7 @@ type TProps = {
   label: string;
   error?: string;
   maxLenght?: number;
+  textArea?: boolean;
 };
 
 const keyboardType: Record<TType, KeyboardTypeOptions> = {
@@ -42,6 +43,7 @@ export const Input = ({
   error,
   label,
   maxLenght,
+  textArea,
 }: TProps) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -59,6 +61,8 @@ export const Input = ({
         style={[styles.input, error ? styles.inputError : {}]}
         keyboardType={keyboardType[type]}
         maxLength={maxLenght}
+        numberOfLines={textArea ? 3 : 1}
+        multiline={textArea}
       />
       {type === 'password' ? (
         <Pressable onPress={toggleVisibility} style={styles.eyeIcon}>
@@ -87,10 +91,11 @@ export const Input = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    maxHeight: scaling.vs(55),
+    minHeight: scaling.vs(55),
     borderRadius: scaling.vs(27),
     borderWidth: 1,
     borderColor: greyLight,
+    alignItems: 'center',
     position: 'relative',
     marginVertical: scaling.vs(40),
     flex: 1,
@@ -100,8 +105,7 @@ const styles = StyleSheet.create({
   },
   input: {
     padding: 0,
-    width: '100%',
-    height: '100%',
+    width: '90%',
     marginHorizontal: scaling.hs(15),
   },
   inputError: {

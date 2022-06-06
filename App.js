@@ -12,7 +12,8 @@ export const App = () => {
         type="text"
         label="Test"
         onChangeText={t => setText(t)}
-        maxLenght={20}
+        textArea
+        error="er"
       />
       <Button />
     </ScrollView>
