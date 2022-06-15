@@ -6,7 +6,7 @@ type Props = {};
 export const Home = (props: Props) => {
   return (
     <View>
-      <Text>Welcome</Text>
+      <Text>Home</Text>
     </View>
   );
 };
