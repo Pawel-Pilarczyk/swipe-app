@@ -1,17 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useAppSelector } from 'src/hooks/redux';
+import { getName } from 'src/store/user/selectors';
 import { Button } from 'src/components/Button';
 import { ROUTES } from 'src/constants/routes';
 
-type Props = {};
-
-export const Welcome = (props: Props) => {
+export const Welcome = () => {
+  const name = useAppSelector(getName);
   const navigation = useNavigation();
   return (
     <View>
-      <Text>Welcome</Text>
-      <Button title="Hello" onPress={() => navigation.navigate(ROUTES.HOME)} />
+      <Text>{name}</Text>
+      <Button
+        title="Hello"
+        onPress={() => navigation.navigate({ key: ROUTES.HOME })}
+      />
     </View>
   );
 };
