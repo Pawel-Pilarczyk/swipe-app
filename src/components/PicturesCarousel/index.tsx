@@ -87,7 +87,7 @@ export const PicturesCarousel = () => {
           }
         }}>
         {data.map((item, index) => (
-          <View>
+          <View key={index}>
             <Animated.Image
               source={item.img}
               style={[
@@ -98,7 +98,6 @@ export const PicturesCarousel = () => {
                   ? scalingPictureTwoStyle
                   : [scalingPictureThreeStyle, styles.imageThree],
               ]}
-              key={index}
             />
           </View>
         ))}
