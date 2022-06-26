@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { RootStackNavigation } from './navigation';
 import { store } from './store/store';
-import { Text } from 'react-native';
 
 export const App = () => {
   return (
@@ -11,7 +10,6 @@ export const App = () => {
       <NavigationContainer>
         <RootStackNavigation />
       </NavigationContainer>
-      <Text>Hello</Text>
     </Provider>
   );
 };

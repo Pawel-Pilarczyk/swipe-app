@@ -1,6 +1,6 @@
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 
-const {height: windowHeight, width: windowWidth} = Dimensions.get('window');
+const { height: windowHeight, width: windowWidth } = Dimensions.get('window');
 
 const guidelineBaseWidth = 428;
 const guidelineBaseHeight = 882;
@@ -16,4 +16,4 @@ const vs = (size: number) =>
 const hs = (size: number) =>
   Math.round(size + (windowWidth / guidelineBaseWidth) * size - size);
 
-export const scaling = {s, vs, hs};
+export const scaling = { s, vs, hs };
