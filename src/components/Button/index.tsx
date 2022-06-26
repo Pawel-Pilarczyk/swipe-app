@@ -1,15 +1,15 @@
 import React from 'react';
-import {StyleSheet, ViewStyle, Pressable} from 'react-native';
+import { StyleSheet, ViewStyle, Pressable } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import {FireIcon} from 'src/assets/svg';
-import {primary, black, white} from 'src/styles/colors';
-import {scaling} from 'src/styles/scaling';
-import {Typography} from '../Typography';
+import { FireIcon } from 'src/assets/svg';
+import { primary, black, white } from 'src/styles/colors';
+import { scaling } from 'src/styles/scaling';
+import { Typography } from '../Typography';
 
 const Icons = {
   fire: <FireIcon />,
@@ -38,8 +38,8 @@ export const Button = ({
   });
   const handlePress = () => {
     opacity.value = withSequence(
-      withTiming(0, {duration: 100}),
-      withTiming(1, {duration: 100}),
+      withTiming(0, { duration: 100 }),
+      withTiming(1, { duration: 100 }),
     );
     onPress?.();
   };
@@ -80,5 +80,5 @@ const styles = StyleSheet.create({
   ghost: {
     backgroundColor: white,
   },
-  primary: {backgroundColor: primary},
+  primary: { backgroundColor: primary },
 });

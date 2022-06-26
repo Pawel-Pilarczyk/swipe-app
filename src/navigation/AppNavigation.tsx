@@ -6,7 +6,9 @@ import { Welcome } from 'src/screens/Welcome';
 const AppStack = createNativeStackNavigator();
 
 export const AppStackNavigation = () => (
-  <AppStack.Navigator initialRouteName={ROUTES.WELCOME}>
+  <AppStack.Navigator
+    initialRouteName={ROUTES.WELCOME}
+    screenOptions={{ headerShown: false }}>
     <AppStack.Screen name={ROUTES.WELCOME} component={Welcome} />
   </AppStack.Navigator>
 );
