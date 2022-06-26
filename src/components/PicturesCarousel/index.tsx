@@ -66,7 +66,7 @@ export const PicturesCarousel = () => {
         showsHorizontalScrollIndicator={false}
         onScroll={event => {
           const currentOffset = event.nativeEvent.contentOffset.x;
-          if (currentOffset < scaling.hs(200)) {
+          if (currentOffset < scaling.hs(160)) {
             setActiveIndex(0);
             scalingPictureOneValue.value = withTiming(1, { duration: 200 });
             scalingPictureTwoValue.value = withTiming(0.8, { duration: 300 });
