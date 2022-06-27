@@ -62,8 +62,8 @@ export const SocialMediaButton = ({ icon, onPress }: TProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    maxHeight: scaling.hs(70),
+    height: scaling.hs(70),
+    width: '100%',
     borderRadius: scaling.hs(15),
     borderColor: greyLight,
     borderWidth: 1,
@@ -72,9 +72,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingLeft: '30%',
   },
   text: {
     marginLeft: scaling.hs(10),
+  },
+  icon: {
+    marginLeft: '45%',
   },
 });

@@ -3,4 +3,5 @@ export const ROUTES = {
   APP: 'APP',
   HOME: 'HOME',
   WELCOME: 'WELCOME',
+  SIGN_IN_SOCIAL_MEDIA: 'SIGN_IN_SOCIAL_MEDIA',
 };
