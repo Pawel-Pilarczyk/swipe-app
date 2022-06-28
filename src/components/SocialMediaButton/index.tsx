@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable } from 'react-native';
+import { StyleSheet, Pressable, ViewStyle } from 'react-native';
 import React from 'react';
 import Animated, {
   useSharedValue,
@@ -26,9 +26,10 @@ type TIcon = keyof typeof Icons;
 type TProps = {
   icon: TIcon;
   onPress?: () => void;
+  style?: ViewStyle | Array<ViewStyle>;
 };
 
-export const SocialMediaButton = ({ icon, onPress }: TProps) => {
+export const SocialMediaButton = ({ icon, onPress, style }: TProps) => {
   const opacity = useSharedValue(1);
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -44,7 +45,7 @@ export const SocialMediaButton = ({ icon, onPress }: TProps) => {
     onPress?.();
   };
   return (
-    <Animated.View style={[styles.wrapper, animatedStyles]}>
+    <Animated.View style={[styles.wrapper, animatedStyles, style]}>
       <Pressable onPress={handlePress} style={styles.pressable}>
         {Icons[icon]}
         <Typography
@@ -62,8 +63,8 @@ export const SocialMediaButton = ({ icon, onPress }: TProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    maxHeight: scaling.hs(70),
+    height: scaling.hs(70),
+    width: '100%',
     borderRadius: scaling.hs(15),
     borderColor: greyLight,
     borderWidth: 1,
@@ -72,9 +73,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingLeft: '30%',
   },
   text: {
     marginLeft: scaling.hs(10),
+  },
+  icon: {
+    marginLeft: '45%',
   },
 });
