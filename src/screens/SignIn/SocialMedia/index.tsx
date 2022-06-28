@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { scaling } from 'src/styles/scaling';
-import { black, primary } from 'src/styles/colors';
+import { black, primary, white } from 'src/styles/colors';
 import { SocialMediaButton } from 'src/components/SocialMediaButton';
 import { Typography } from 'src/components/Typography';
 import { ArrowLeft } from 'src/assets/svg';
@@ -38,7 +38,7 @@ export const SignInSocialMedia = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: white,
     paddingHorizontal: scaling.hs(25),
     paddingVertical: scaling.vs(50),
   },
