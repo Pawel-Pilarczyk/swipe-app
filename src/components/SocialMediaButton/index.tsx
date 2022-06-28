@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable } from 'react-native';
+import { StyleSheet, Pressable, ViewStyle } from 'react-native';
 import React from 'react';
 import Animated, {
   useSharedValue,
@@ -26,9 +26,10 @@ type TIcon = keyof typeof Icons;
 type TProps = {
   icon: TIcon;
   onPress?: () => void;
+  style?: ViewStyle | Array<ViewStyle>;
 };
 
-export const SocialMediaButton = ({ icon, onPress }: TProps) => {
+export const SocialMediaButton = ({ icon, onPress, style }: TProps) => {
   const opacity = useSharedValue(1);
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -44,7 +45,7 @@ export const SocialMediaButton = ({ icon, onPress }: TProps) => {
     onPress?.();
   };
   return (
-    <Animated.View style={[styles.wrapper, animatedStyles]}>
+    <Animated.View style={[styles.wrapper, animatedStyles, style]}>
       <Pressable onPress={handlePress} style={styles.pressable}>
         {Icons[icon]}
         <Typography

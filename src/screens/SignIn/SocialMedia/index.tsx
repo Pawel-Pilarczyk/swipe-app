@@ -11,24 +11,26 @@ export const SignInSocialMedia = () => {
   return (
     <View style={styles.wrapper}>
       <ArrowLeft fill={primary} />
-      <Typography size="22" centered color={black}>
+      <Typography size="22" centered color={black} style={styles.title}>
         Let's sign you in
       </Typography>
-      <SocialMediaButton icon="facebook" />
-      <SocialMediaButton icon="google" />
+      <SocialMediaButton icon="facebook" style={styles.button} />
+      <SocialMediaButton icon="google" style={styles.button} />
       <SocialMediaButton icon="github" />
-      <Typography size="16" centered color={black}>
+      <Typography size="16" centered color={black} style={styles.text}>
         or
       </Typography>
       <Button title="Sign in with password" />
-      <Typography size="16" color={black}>
-        Don't have an account?
+      <View style={styles.footer}>
+        <Typography size="16" color={black}>
+          Don't have an account?
+        </Typography>
         <Pressable>
           <Typography size="16" color={primary}>
-            Sign up
+            {' Sign up'}
           </Typography>
         </Pressable>
-      </Typography>
+      </View>
     </View>
   );
 };
@@ -38,6 +40,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     paddingHorizontal: scaling.hs(25),
-    paddingTop: scaling.vs(70),
+    paddingVertical: scaling.vs(50),
+  },
+  title: {
+    marginTop: scaling.vs(40),
+    marginBottom: scaling.vs(20),
+  },
+  button: {
+    marginBottom: scaling.vs(20),
+  },
+  text: {
+    marginVertical: scaling.vs(35),
+  },
+  footer: {
+    marginTop: 'auto',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
