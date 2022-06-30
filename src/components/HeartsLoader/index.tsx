@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Animated, {
   useSharedValue,
@@ -6,11 +6,15 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import { HEART_SIZE, SIZE, positions } from './data';
+import { SIZE, positions } from './data';
 import { primary } from 'src/styles/colors';
 import { HeartIcon } from 'src/assets/svg';
 
-export const HeartsLoader = () => {
+type TProps = {
+  style?: ViewStyle | Array<ViewStyle>;
+};
+
+export const HeartsLoader = ({ style }: TProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const scale = useSharedValue(1);
   const animatedStyles = useAnimatedStyle(() => {
@@ -34,8 +38,7 @@ export const HeartsLoader = () => {
     return () => clearInterval(interval);
   });
   return (
-    <View
-      style={[styles.heartsWrapper, { height: HEART_SIZE, width: HEART_SIZE }]}>
+    <View style={[styles.heartsWrapper, style]}>
       {positions.map((item, index) => (
         <Animated.View
           key={item.rotation}

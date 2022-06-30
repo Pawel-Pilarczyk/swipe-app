@@ -8,6 +8,7 @@ import {
 import { white, primary } from 'src/styles/colors';
 import { Typography } from 'src/components/Typography';
 import { HeartsLoader } from 'src/components/HeartsLoader';
+import { Logo } from 'src/assets/svg';
 
 export const LoadingModal = () => {
   const modalVisible = useAppSelector(getLoadingModalVisible);
@@ -15,10 +16,11 @@ export const LoadingModal = () => {
   return (
     <Modal visible={true || modalVisible} transparent>
       <View style={styles.wrapper}>
-        <HeartsLoader />
+        <Logo />
         <Typography capitalize color={primary} size="28">
-          {modalText}
+          {modalText || 'Loading'}
         </Typography>
+        <HeartsLoader />
       </View>
     </Modal>
   );
