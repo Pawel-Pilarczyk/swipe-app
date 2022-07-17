@@ -9,12 +9,14 @@ import Animated, {
 import { SIZE, positions } from './data';
 import { primary } from 'src/styles/colors';
 import { HeartIcon } from 'src/assets/svg';
+import { Typography } from '../Typography';
 
 type TProps = {
+  title?: string;
   style?: ViewStyle | Array<ViewStyle>;
 };
 
-export const HeartsLoader = ({ style }: TProps) => {
+export const HeartsLoader = ({ style, title = 'Loading' }: TProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const scale = useSharedValue(1);
   const animatedStyles = useAnimatedStyle(() => {
@@ -25,8 +27,8 @@ export const HeartsLoader = ({ style }: TProps) => {
 
   const handleAnimation = () => {
     scale.value = withSequence(
-      withTiming(1.1, { duration: 50 }),
-      withTiming(1, { duration: 50 }),
+      withTiming(1.1, { duration: 40 }),
+      withTiming(1, { duration: 40 }),
     );
   };
 
@@ -38,29 +40,44 @@ export const HeartsLoader = ({ style }: TProps) => {
     return () => clearInterval(interval);
   });
   return (
-    <View style={[styles.heartsWrapper, style]}>
-      {positions.map((item, index) => (
-        <Animated.View
-          key={item.rotation}
-          style={index === activeIndex && animatedStyles}>
-          <HeartIcon
-            fill={primary}
-            style={[
-              {
-                left: item.posx,
-                top: item.posy,
-                transform: [{ rotate: `${item.rotation}deg` }],
-              },
-              styles.heart,
-            ]}
-          />
-        </Animated.View>
-      ))}
+    <View style={styles.wrapper}>
+      <View style={[styles.heartsWrapper, style]}>
+        {positions.map((item, index) => (
+          <Animated.View
+            key={item.rotation}
+            style={index === activeIndex && animatedStyles}>
+            <HeartIcon
+              fill={primary}
+              style={[
+                {
+                  left: item.posx,
+                  top: item.posy,
+                  transform: [{ rotate: `${item.rotation}deg` }],
+                },
+                styles.heart,
+              ]}
+            />
+          </Animated.View>
+        ))}
+      </View>
+      <Typography
+        capitalize
+        color={primary}
+        size={title?.length > 10 ? '18' : '28'}
+        centered
+        style={styles.text}>
+        {title}
+      </Typography>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   heartsWrapper: {
     position: 'relative',
     width: SIZE,
@@ -69,5 +86,9 @@ const styles = StyleSheet.create({
   },
   heart: {
     position: 'absolute',
+  },
+  text: {
+    position: 'absolute',
+    width: SIZE - 20,
   },
 });

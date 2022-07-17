@@ -5,10 +5,10 @@ import {
   getLoadingModalText,
   getLoadingModalVisible,
 } from 'src/store/modals/selectors';
-import { white, primary } from 'src/styles/colors';
-import { Typography } from 'src/components/Typography';
+import { white } from 'src/styles/colors';
+import { scaling } from 'src/styles/scaling';
 import { HeartsLoader } from 'src/components/HeartsLoader';
-import { Logo } from 'src/assets/svg';
+import { DashedCircle } from 'src/components/Decorators/DashedCircle';
 
 export const LoadingModal = () => {
   const modalVisible = useAppSelector(getLoadingModalVisible);
@@ -16,11 +16,9 @@ export const LoadingModal = () => {
   return (
     <Modal visible={true || modalVisible} transparent>
       <View style={styles.wrapper}>
-        <Logo />
-        <Typography capitalize color={primary} size="28">
-          {modalText || 'Loading'}
-        </Typography>
-        <HeartsLoader />
+        <HeartsLoader title={modalText} />
+        <DashedCircle size={scaling.hs(300)} style={styles.circleOne} />
+        <DashedCircle style={styles.circleTwo} />
       </View>
     </Modal>
   );
@@ -30,5 +28,17 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: white,
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  circleOne: {
+    top: scaling.vs(-100),
+    left: scaling.hs(-20),
+  },
+  circleTwo: {
+    bottom: scaling.vs(-100),
+    right: scaling.hs(-60),
   },
 });
