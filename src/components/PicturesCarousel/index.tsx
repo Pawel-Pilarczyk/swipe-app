@@ -89,7 +89,7 @@ export const PicturesCarousel = () => {
         {data.map((item, index) => (
           <View key={index}>
             <Animated.Image
-              source={item.img}
+              source={{ uri: item.img }}
               style={[
                 styles.image,
                 index === 0
