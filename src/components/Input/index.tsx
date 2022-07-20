@@ -12,6 +12,7 @@ import {
   colorError,
   primaryTransparent,
   primary,
+  white,
 } from 'src/styles/colors';
 import { scaling } from 'src/styles/scaling';
 import { Typography } from '../Typography';
@@ -94,7 +95,7 @@ export const Input = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    minHeight: scaling.vs(55),
+    height: scaling.vs(55),
     borderRadius: scaling.vs(27),
     borderWidth: 1,
     borderColor: greyLight,
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginVertical: scaling.vs(40),
     flex: 1,
+    backgroundColor: white,
   },
   wrapperError: {
     borderColor: colorError,

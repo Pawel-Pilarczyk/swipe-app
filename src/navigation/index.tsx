@@ -9,6 +9,7 @@ export type RootStackParamList = {
   WELCOME: undefined;
   SIGN_IN_SOCIAL_MEDIA: undefined;
   HOME: undefined;
+  LOG_IN: undefined;
 };
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
