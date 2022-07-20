@@ -14,7 +14,7 @@ export const LoadingModal = () => {
   const modalVisible = useAppSelector(getLoadingModalVisible);
   const modalText = useAppSelector(getLoadingModalText);
   return (
-    <Modal visible={true || modalVisible} transparent>
+    <Modal visible={modalVisible} transparent>
       <View style={styles.wrapper}>
         <HeartsLoader title={modalText} />
         <DashedCircle size={scaling.hs(300)} style={styles.circleOne} />
