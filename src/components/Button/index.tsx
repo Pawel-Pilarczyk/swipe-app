@@ -12,7 +12,7 @@ import { scaling } from 'src/styles/scaling';
 import { Typography } from '../Typography';
 
 const Icons = {
-  fire: <FireIcon />,
+  fire: <FireIcon testID="fireIcon" />,
 };
 
 type TProps = {
@@ -21,6 +21,8 @@ type TProps = {
   type?: 'default' | 'ghost';
   style?: ViewStyle | ViewStyle[];
   icon?: keyof typeof Icons;
+  disabled?: boolean;
+  testID?: string;
 };
 
 export const Button = ({
@@ -29,6 +31,8 @@ export const Button = ({
   type = 'default',
   style,
   icon,
+  disabled = false,
+  testID,
 }: TProps) => {
   const opacity = useSharedValue(1);
   const animatedOpacityStyles = useAnimatedStyle(() => {
@@ -52,7 +56,11 @@ export const Button = ({
         type === 'default' ? styles.primary : styles.ghost,
         animatedOpacityStyles,
       ]}>
-      <Pressable onPress={handlePress} style={styles.pressable}>
+      <Pressable
+        onPress={handlePress}
+        style={styles.pressable}
+        testID={testID}
+        disabled={disabled}>
         {icon && Icons[icon]}
         <Typography
           centered
