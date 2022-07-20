@@ -9,4 +9,5 @@ import { App } from '../src/App.tsx';
 
 it('renders correctly', () => {
   const app = render(<App />);
+  expect(app).toBeTruthy();
 });

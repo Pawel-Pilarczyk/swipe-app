@@ -13,8 +13,8 @@ import {
   primaryTransparent,
   primary,
 } from 'src/styles/colors';
-import { Typography } from '../Typography';
 import { scaling } from 'src/styles/scaling';
+import { Typography } from '../Typography';
 import { ErrorIcon, EyeClosed, EyeOpened } from 'src/assets/svg';
 
 type TType = 'email' | 'text' | 'number' | 'phone' | 'password';
@@ -24,8 +24,9 @@ type TProps = {
   onChangeText: (s: string) => void;
   label: string;
   error?: string;
-  maxLenght?: number;
+  maxLength?: number;
   textArea?: boolean;
+  testID?: string;
 };
 
 const keyboardType: Record<TType, KeyboardTypeOptions> = {
@@ -42,8 +43,9 @@ export const Input = ({
   type,
   error,
   label,
-  maxLenght,
+  maxLength,
   textArea,
+  testID,
 }: TProps) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -60,9 +62,10 @@ export const Input = ({
         secureTextEntry={type === 'password' && !passwordVisible}
         style={[styles.input, error ? styles.inputError : {}]}
         keyboardType={keyboardType[type]}
-        maxLength={maxLenght}
+        maxLength={maxLength}
         numberOfLines={textArea ? 3 : 1}
         multiline={textArea}
+        testID={testID}
       />
       {type === 'password' ? (
         <Pressable onPress={toggleVisibility} style={styles.eyeIcon}>
@@ -74,7 +77,7 @@ export const Input = ({
         </Pressable>
       ) : null}
       {error ? (
-        <View style={styles.error}>
+        <View style={styles.error} testID="errorMessage">
           <ErrorIcon
             width={scaling.vs(20)}
             height={scaling.vs(20)}

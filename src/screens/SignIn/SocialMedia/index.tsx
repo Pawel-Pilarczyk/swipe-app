@@ -4,8 +4,8 @@ import { scaling } from 'src/styles/scaling';
 import { black, primary, white } from 'src/styles/colors';
 import { SocialMediaButton } from 'src/components/SocialMediaButton';
 import { Typography } from 'src/components/Typography';
-import { ArrowLeft } from 'src/assets/svg';
 import { Button } from 'src/components/Button';
+import { ArrowLeft } from 'src/assets/svg';
 
 export const SignInSocialMedia = () => {
   return (
