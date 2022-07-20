@@ -1,4 +1,4 @@
-import {TextStyle} from 'react-native';
+import { TextStyle } from 'react-native';
 export type TSize = '8' | '10' | '12' | '14' | '16' | '18' | '22' | '28' | '32';
 export type TType = 'thin' | 'normal' | 'bold';
 

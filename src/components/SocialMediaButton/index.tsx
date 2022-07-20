@@ -16,9 +16,9 @@ import {
 } from 'src/assets/svg/socialMedia';
 
 const Icons = {
-  facebook: <FacebookIcon />,
-  github: <GithubIcon />,
-  google: <GoogleIcon />,
+  facebook: <FacebookIcon testID="fb" />,
+  github: <GithubIcon testID="gh" />,
+  google: <GoogleIcon testID="google" />,
 };
 
 type TIcon = keyof typeof Icons;
@@ -27,9 +27,10 @@ type TProps = {
   icon: TIcon;
   onPress?: () => void;
   style?: ViewStyle | Array<ViewStyle>;
+  testID?: string;
 };
 
-export const SocialMediaButton = ({ icon, onPress, style }: TProps) => {
+export const SocialMediaButton = ({ icon, onPress, style, testID }: TProps) => {
   const opacity = useSharedValue(1);
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -46,7 +47,7 @@ export const SocialMediaButton = ({ icon, onPress, style }: TProps) => {
   };
   return (
     <Animated.View style={[styles.wrapper, animatedStyles, style]}>
-      <Pressable onPress={handlePress} style={styles.pressable}>
+      <Pressable onPress={handlePress} style={styles.pressable} testID={testID}>
         {Icons[icon]}
         <Typography
           capitalize

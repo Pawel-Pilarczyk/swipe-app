@@ -1,7 +1,7 @@
-import {StyleSheet, Text, TextStyle} from 'react-native';
+import { StyleSheet, Text, TextStyle } from 'react-native';
 import React from 'react';
-import {TProps, TType} from './types';
-import {scaling} from 'src/styles/scaling';
+import { TProps, TType } from './types';
+import { scaling } from 'src/styles/scaling';
 
 export const Typography = ({
   size = '12',
