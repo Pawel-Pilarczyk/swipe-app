@@ -17,7 +17,11 @@ export const AppStackNavigation = () => {
         name="SIGN_IN_SOCIAL_MEDIA"
         component={SignInSocialMedia}
       />
-      <AppStack.Screen name="LOG_IN" component={Login} />
+      <AppStack.Screen
+        name="LOG_IN"
+        component={Login}
+        initialParams={{ type: 'signup' }}
+      />
     </AppStack.Navigator>
   );
 };

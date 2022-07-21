@@ -1,16 +1,21 @@
-import { Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { useRoute } from '@react-navigation/native';
+import { RootRouteProps } from 'src/navigation';
+import { scaling } from 'src/styles/scaling';
 import { black, primary, white } from 'src/styles/colors';
 import { DashedCircle } from 'src/components/Decorators/DashedCircle';
 import { Typography } from 'src/components/Typography';
 import { Button } from 'src/components/Button';
 import { SocialMediaButton } from 'src/components/SocialMediaButton';
-import { Logo, HeartIcon } from 'src/assets/svg';
 import { Input } from 'src/components/Input';
-import { ScrollView } from 'react-native-gesture-handler';
-import { scaling } from 'src/styles/scaling';
+import { Logo } from 'src/assets/svg';
 
 export const Login = () => {
+  const { params } = useRoute<RootRouteProps<'LOG_IN'>>();
+  const { type } = params;
+
   return (
     <ScrollView style={styles.scrollView}>
       <View style={styles.wrapper}>
@@ -23,7 +28,7 @@ export const Login = () => {
           type="bold"
           size="28"
           style={styles.title}>
-          Create an Account
+          {type === 'login' ? "Let's Sign You In" : 'Create an Account'}
         </Typography>
         <Input label="Email" onChangeText={() => {}} text="" type="email" />
         <Input
@@ -32,7 +37,7 @@ export const Login = () => {
           text=""
           type="password"
         />
-        <Button title="Sign up" />
+        <Button title={type === 'login' ? ' Sign in' : ' Sign up'} />
         <Typography centered style={styles.middleText}>
           or continue with
         </Typography>
@@ -42,11 +47,13 @@ export const Login = () => {
         </View>
         <View style={styles.footer}>
           <Typography size="16" color={black}>
-            Don't have an account?
+            {type === 'login'
+              ? "Don't have an account?"
+              : 'Already have an account?'}
           </Typography>
           <Pressable>
             <Typography size="16" color={primary}>
-              {' Sign up'}
+              {type === 'login' ? ' Sign up' : ' Sign in'}
             </Typography>
           </Pressable>
         </View>
@@ -77,7 +84,7 @@ const styles = StyleSheet.create({
     marginVertical: scaling.hs(20),
   },
   middleText: {
-    marginVertical: scaling.vs(15),
+    marginVertical: scaling.vs(20),
   },
   socialMediaButton: {
     marginRight: scaling.hs(20),

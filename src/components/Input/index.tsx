@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     borderRadius: scaling.vs(27),
     borderWidth: 1,
     borderColor: greyLight,
-    alignItems: 'center',
+    justifyContent: 'center',
     position: 'relative',
     marginVertical: scaling.vs(40),
     flex: 1,
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   input: {
     padding: 0,
-    width: '90%',
+    flex: 1,
     marginHorizontal: scaling.hs(15),
   },
   inputError: {
