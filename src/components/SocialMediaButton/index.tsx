@@ -6,7 +6,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import { greyLight, black } from 'src/styles/colors';
+import { greyLight, black, white } from 'src/styles/colors';
 import { scaling } from 'src/styles/scaling';
 import { Typography } from '../Typography';
 import {
@@ -16,9 +16,9 @@ import {
 } from 'src/assets/svg/socialMedia';
 
 const Icons = {
-  facebook: <FacebookIcon testID="fb" />,
-  github: <GithubIcon testID="gh" />,
-  google: <GoogleIcon testID="google" />,
+  facebook: <FacebookIcon width={scaling.hs(30)} testID="fb" />,
+  github: <GithubIcon width={scaling.hs(30)} testID="gh" />,
+  google: <GoogleIcon width={scaling.hs(30)} testID="google" />,
 };
 
 type TIcon = keyof typeof Icons;
@@ -64,22 +64,21 @@ export const SocialMediaButton = ({ icon, onPress, style, testID }: TProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: scaling.hs(70),
-    width: '100%',
+    flex: 1,
+    maxHeight: scaling.hs(70),
+    minHeight: scaling.hs(45),
     borderRadius: scaling.hs(15),
     borderColor: greyLight,
     borderWidth: 1,
+    alignItems: 'center',
+    backgroundColor: white,
   },
   pressable: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: '30%',
   },
   text: {
     marginLeft: scaling.hs(10),
-  },
-  icon: {
-    marginLeft: '45%',
   },
 });
