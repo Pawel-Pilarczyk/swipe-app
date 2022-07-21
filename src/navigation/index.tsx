@@ -13,6 +13,10 @@ export type RootStackParamList = {
   LOG_IN: {
     type: 'login' | 'signup';
   };
+  SIGN_UP: {
+    type: 'login' | 'signup';
+  };
+  COUNTRY_PICKER: undefined;
 };
 export type RootRouteProps<RouteName extends keyof RootStackParamList> =
   RouteProp<RootStackParamList, RouteName>;
