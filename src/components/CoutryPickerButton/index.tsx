@@ -1,5 +1,4 @@
-import { StyleSheet, Pressable, ViewStyle } from 'react-native';
-import ReactCountryFlag from 'react-country-flag';
+import { StyleSheet, Pressable, ViewStyle, View } from 'react-native';
 import React from 'react';
 import Animated, {
   useAnimatedStyle,
@@ -7,8 +6,9 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
+import CountryFlag from 'react-native-country-flag';
 import { scaling } from 'src/styles/scaling';
-import { black, greyLight, white } from 'src/styles/colors';
+import { black, greyLight, primary, white } from 'src/styles/colors';
 import { Typography } from 'src/components/Typography';
 
 type TProps = {
@@ -20,7 +20,7 @@ type TProps = {
   testID?: string;
 };
 
-export const SocialMediaButton = ({
+export const CountryPickerButton = ({
   active,
   code,
   countryName,
@@ -43,16 +43,19 @@ export const SocialMediaButton = ({
     onPress?.();
   };
   return (
-    <Animated.View style={[styles.wrapper, animatedStyles, style]}>
+    <Animated.View
+      style={[styles.wrapper, animatedStyles, style, active && styles.active]}>
       <Pressable onPress={handlePress} style={styles.pressable} testID={testID}>
-        <Typography
-          capitalize
-          size="18"
-          color={black}
-          type="normal"
-          style={styles.text}>
-          {countryName}
-        </Typography>
+        <View style={styles.textWrapper}>
+          <CountryFlag isoCode={code} size={10} />
+          <Typography style={styles.middleText}>{code}</Typography>
+          <Typography capitalize size="18" color={black} type="normal">
+            {countryName}
+          </Typography>
+        </View>
+        <View style={[styles.circle, active && styles.circleActive]}>
+          {active && <View style={styles.innerCircle} />}
+        </View>
       </Pressable>
     </Animated.View>
   );
@@ -61,20 +64,49 @@ export const SocialMediaButton = ({
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    maxHeight: scaling.hs(70),
-    minHeight: scaling.hs(45),
+    height: scaling.hs(70),
+    paddingHorizontal: scaling.hs(20),
     borderRadius: scaling.hs(15),
+    marginVertical: scaling.vs(10),
     borderColor: greyLight,
-    borderWidth: 1,
+    borderWidth: 2,
     alignItems: 'center',
     backgroundColor: white,
   },
   pressable: {
     flex: 1,
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  text: {
-    marginLeft: scaling.hs(10),
+  textWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '60%',
+  },
+  middleText: {
+    marginHorizontal: scaling.hs(20),
+  },
+  active: {
+    borderColor: primary,
+  },
+  circle: {
+    width: scaling.hs(20),
+    height: scaling.hs(20),
+    borderRadius: scaling.hs(10),
+    borderWidth: 2,
+    borderColor: greyLight,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  circleActive: {
+    borderColor: primary,
+  },
+  innerCircle: {
+    width: scaling.hs(10),
+    height: scaling.hs(10),
+    borderRadius: scaling.hs(5),
+    backgroundColor: primary,
   },
 });
