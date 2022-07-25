@@ -63,7 +63,6 @@ export const CountryPickerButton = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
     height: scaling.hs(70),
     paddingHorizontal: scaling.hs(20),
     borderRadius: scaling.hs(15),

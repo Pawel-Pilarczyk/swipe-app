@@ -5,3 +5,4 @@ export { default as EyeClosed } from './eyeClosed.svg';
 export { default as ArrowLeft } from './arrowLeft.svg';
 export { default as HeartIcon } from './heart.svg';
 export { default as Logo } from './logo.svg';
+export { default as SearchIcon } from './search.svg';
