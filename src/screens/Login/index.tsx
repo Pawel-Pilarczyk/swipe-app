@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { RootRouteProps } from 'src/navigation';
 import { scaling } from 'src/styles/scaling';
 import { black, primary, white } from 'src/styles/colors';
@@ -13,6 +13,7 @@ import { Input } from 'src/components/Input';
 import { Logo } from 'src/assets/svg';
 
 export const Login = () => {
+  const navigation = useNavigation();
   const { params } = useRoute<RootRouteProps<'LOG_IN'>>();
   const { type } = params;
 
@@ -37,7 +38,10 @@ export const Login = () => {
           text=""
           type="password"
         />
-        <Button title={type === 'login' ? ' Sign in' : ' Sign up'} />
+        <Button
+          title={type === 'login' ? ' Sign in' : ' Sign up'}
+          onPress={() => navigation.navigate('COUNTRY_PICKER')}
+        />
         <Typography centered style={styles.middleText}>
           or continue with
         </Typography>

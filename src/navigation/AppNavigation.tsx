@@ -11,7 +11,7 @@ const AppStack = createNativeStackNavigator<RootStackParamList>();
 export const AppStackNavigation = () => {
   return (
     <AppStack.Navigator
-      initialRouteName="COUNTRY_PICKER"
+      initialRouteName="SIGN_UP"
       screenOptions={{ headerShown: false }}>
       <AppStack.Screen name="WELCOME" component={Welcome} />
       <AppStack.Screen
@@ -28,7 +28,15 @@ export const AppStackNavigation = () => {
         component={Login}
         initialParams={{ type: 'signup' }}
       />
-      <AppStack.Screen name="COUNTRY_PICKER" component={CountryPicker} />
+      <AppStack.Screen
+        name="COUNTRY_PICKER"
+        component={CountryPicker}
+        options={{
+          headerShown: true,
+          title: 'Pick your country',
+          headerBackVisible: true,
+        }}
+      />
     </AppStack.Navigator>
   );
 };
