@@ -7,7 +7,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { FireIcon } from 'src/assets/svg';
-import { primary, black, white } from 'src/styles/colors';
+import { primary, black, white, greyLight } from 'src/styles/colors';
 import { scaling } from 'src/styles/scaling';
 import { Typography } from '../Typography';
 
@@ -54,6 +54,7 @@ export const Button = ({
         style,
         styles.wrapper,
         type === 'default' ? styles.primary : styles.ghost,
+        disabled && styles.disabled,
         animatedOpacityStyles,
       ]}>
       <Pressable
@@ -89,4 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: white,
   },
   primary: { backgroundColor: primary },
+  disabled: {
+    backgroundColor: greyLight,
+  },
 });

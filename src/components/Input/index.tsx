@@ -16,9 +16,9 @@ import {
 } from 'src/styles/colors';
 import { scaling } from 'src/styles/scaling';
 import { Typography } from '../Typography';
-import { ErrorIcon, EyeClosed, EyeOpened } from 'src/assets/svg';
+import { ErrorIcon, EyeClosed, EyeOpened, SearchIcon } from 'src/assets/svg';
 
-type TType = 'email' | 'text' | 'number' | 'phone' | 'password';
+type TType = 'email' | 'text' | 'number' | 'phone' | 'password' | 'search';
 type TProps = {
   text: string;
   type: TType;
@@ -36,6 +36,7 @@ const keyboardType: Record<TType, KeyboardTypeOptions> = {
   number: 'numeric',
   password: 'default',
   phone: 'number-pad',
+  search: 'default',
 };
 
 export const Input = ({
@@ -77,6 +78,9 @@ export const Input = ({
           )}
         </Pressable>
       ) : null}
+      {type === 'search' && (
+        <SearchIcon width={scaling.hs(25)} style={styles.eyeIcon} />
+      )}
       {error ? (
         <View style={styles.error} testID="errorMessage">
           <ErrorIcon
@@ -102,7 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'relative',
     marginVertical: scaling.vs(40),
-    flex: 1,
+
     backgroundColor: white,
   },
   wrapperError: {
