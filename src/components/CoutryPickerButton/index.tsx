@@ -44,10 +44,11 @@ export const CountryPickerButton = ({
   };
   return (
     <Animated.View
-      style={[styles.wrapper, animatedStyles, style, active && styles.active]}>
-      <Pressable onPress={handlePress} style={styles.pressable} testID={testID}>
+      style={[styles.wrapper, animatedStyles, style, active && styles.active]}
+      testID={testID}>
+      <Pressable onPress={handlePress} style={styles.pressable}>
         <View style={styles.textWrapper}>
-          <CountryFlag isoCode={code} size={scaling.hs(25)} />
+          <CountryFlag isoCode={code} size={scaling.hs(25)} testID="flag" />
           <Typography style={styles.middleText}>{code}</Typography>
           <Typography capitalize size="18" color={black} type="normal">
             {countryName}

@@ -43,6 +43,7 @@ export const CountryPicker = () => {
     } else {
       setCountriesToDisplay(countriesCopy.splice(page, 5));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   const countriesItems = () => {
@@ -53,6 +54,7 @@ export const CountryPicker = () => {
         countryName={item.name}
         onPress={handlePress(item)}
         key={item.code}
+        testID={'btn' + item.code}
       />
     ));
   };
@@ -64,6 +66,7 @@ export const CountryPicker = () => {
         label="Search"
         text={search}
         onChangeText={t => setSearch(t)}
+        testID="search"
       />
       {countriesItems()}
       <View style={styles.buttonsContainer}>
@@ -72,13 +75,20 @@ export const CountryPicker = () => {
           onPress={handlePrevPagePress}
           style={styles.button}
           disabled={!!search}
+          testID="buttonPrev"
         />
-        <Button title="Next" onPress={() => []} disabled={!activeCountry} />
+        <Button
+          title="Next"
+          onPress={() => []}
+          disabled={!activeCountry}
+          testID="buttonContinue"
+        />
         <Button
           title=">"
           onPress={handleNextPagePress}
           style={styles.button}
           disabled={!!search}
+          testID="buttonNext"
         />
       </View>
     </ScrollView>
