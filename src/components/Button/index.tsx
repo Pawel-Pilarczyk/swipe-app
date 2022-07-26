@@ -56,11 +56,11 @@ export const Button = ({
         type === 'default' ? styles.primary : styles.ghost,
         disabled && styles.disabled,
         animatedOpacityStyles,
-      ]}>
+      ]}
+      testID={testID}>
       <Pressable
         onPress={handlePress}
         style={styles.pressable}
-        testID={testID}
         disabled={disabled}>
         {icon && Icons[icon]}
         <Typography
