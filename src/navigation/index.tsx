@@ -17,6 +17,7 @@ export type RootStackParamList = {
     type: 'login' | 'signup';
   };
   COUNTRY_PICKER: undefined;
+  USER_DETAILS: undefined;
 };
 export type RootRouteProps<RouteName extends keyof RootStackParamList> =
   RouteProp<RootStackParamList, RouteName>;
