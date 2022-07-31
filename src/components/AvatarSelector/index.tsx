@@ -1,4 +1,10 @@
-import { Pressable, View, StyleSheet, Image, ViewStyle } from 'react-native';
+import {
+  TouchableHighlight,
+  View,
+  StyleSheet,
+  Image,
+  ViewStyle,
+} from 'react-native';
 import React from 'react';
 import { scaling } from 'src/styles/scaling';
 import { white, primary, greyLight } from 'src/styles/colors';
@@ -11,14 +17,10 @@ type TProps = {
 };
 
 const AvatarSelector = ({ onPress, img, style }: TProps) => {
-  const handlePress = () => {
-    onPress?.();
-  };
-
   return (
     <View style={[styles.wrapper, style]}>
-      <Pressable
-        onPress={handlePress}
+      <TouchableHighlight
+        onPress={onPress}
         style={[styles.wrapper, styles.pressable]}>
         {img ? (
           <Image source={{ uri: img }} style={styles.img} />
@@ -29,7 +31,7 @@ const AvatarSelector = ({ onPress, img, style }: TProps) => {
             height={scaling.hs(120)}
           />
         )}
-      </Pressable>
+      </TouchableHighlight>
       {onPress && (
         <View style={styles.editIconWrapper}>
           <EditIcon
