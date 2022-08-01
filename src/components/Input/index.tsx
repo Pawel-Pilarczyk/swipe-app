@@ -105,8 +105,7 @@ const styles = StyleSheet.create({
     borderColor: greyLight,
     justifyContent: 'center',
     position: 'relative',
-    marginVertical: scaling.vs(40),
-
+    marginVertical: scaling.vs(35),
     backgroundColor: white,
   },
   wrapperError: {
