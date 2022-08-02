@@ -1,8 +1,8 @@
 import { Pressable, StyleSheet, PressableProps } from 'react-native';
 import React from 'react';
-import { Typography } from 'src/components/Typography';
-import { black, greyLight } from 'src/styles/colors';
 import { scaling } from 'src/styles/scaling';
+import { black, greyLight } from 'src/styles/colors';
+import { Typography } from 'src/components/Typography';
 
 type TProps = {
   onPress: () => void;
@@ -11,7 +11,7 @@ type TProps = {
 
 export const DropdownItem = ({ onPress, value }: TProps & PressableProps) => {
   return (
-    <Pressable onPress={onPress} style={styles.wrapper}>
+    <Pressable onPress={onPress} style={[styles.wrapper]}>
       <Typography size="18" type="normal" color={black}>
         {value}
       </Typography>
@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: scaling.hs(20),
     borderBottomWidth: 1,
     borderColor: greyLight,
+    zIndex: 999,
   },
 });

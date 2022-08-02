@@ -1,10 +1,11 @@
 import { Pressable, Modal, StyleSheet, View, ScrollView } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
+import { HEIGHT, WIDTH } from 'src/constants/dimentions';
 import { scaling } from 'src/styles/scaling';
 import {
   black,
@@ -13,12 +14,13 @@ import {
   greyLight,
   primary,
   primaryTransparent,
+  primarySemiTransparent,
   white,
 } from 'src/styles/colors';
 import { Typography } from '../Typography';
 import { DropdownItem } from './DropdownItem';
+import { DashedCircle } from 'src/components/Decorators/DashedCircle';
 import { ArrowDown, ErrorIcon, CloseIcon } from 'src/assets/svg';
-import { HEIGHT, WIDTH } from 'src/constants/dimentions';
 
 type TProps = {
   data: Record<string, any>;
@@ -99,7 +101,7 @@ export const Dropdown = ({
       ) : null}
       <Modal visible={opened} transparent>
         <Animated.View style={[styles.modalView, animatedStyles]}>
-          <ScrollView style={styles.contentWrapper}>
+          <View style={styles.contentWrapper}>
             <Pressable onPress={handleToggleOpened}>
               <CloseIcon
                 fill={black}
@@ -110,14 +112,26 @@ export const Dropdown = ({
             <Typography centered capitalize color={black} size="22">
               {label || ''}
             </Typography>
-            {data.map(i => (
-              <DropdownItem
-                onPress={handlePress(i[diplayByValue])}
-                value={i[diplayByValue]}
-                key={i[diplayByValue]}
-              />
-            ))}
-          </ScrollView>
+            <ScrollView contentContainerStyle={{ zIndex: 99 }}>
+              {data.map(i => (
+                <DropdownItem
+                  onPress={handlePress(i[diplayByValue])}
+                  value={i[diplayByValue]}
+                  key={i[diplayByValue]}
+                />
+              ))}
+            </ScrollView>
+            <DashedCircle
+              size={scaling.hs(150)}
+              style={styles.circleOne}
+              color={primarySemiTransparent}
+            />
+            <DashedCircle
+              size={scaling.hs(250)}
+              style={styles.circleTwo}
+              color={primarySemiTransparent}
+            />
+          </View>
         </Animated.View>
       </Modal>
     </View>
@@ -156,6 +170,7 @@ const styles = StyleSheet.create({
     maxHeight: '70%',
     backgroundColor: white,
     borderRadius: 20,
+    overflow: 'hidden',
   },
   modalView: {
     width: WIDTH,
@@ -175,5 +190,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: primaryTransparent,
     borderRadius: scaling.vs(14),
+  },
+  circleOne: {
+    top: scaling.vs(-90),
+    left: scaling.vs(-90),
+  },
+  circleTwo: {
+    top: scaling.vs(130),
+    right: scaling.hs(-150),
   },
 });

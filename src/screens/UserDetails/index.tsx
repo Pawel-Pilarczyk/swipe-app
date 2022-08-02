@@ -6,7 +6,7 @@ import { scaling } from 'src/styles/scaling';
 import { Input } from 'src/components/Input';
 import { Button } from 'src/components/Button';
 import { Dropdown } from 'src/components/Dropdown';
-import AvatarSelector from 'src/components/AvatarSelector';
+import { AvatarSelector } from 'src/components/AvatarSelector';
 
 const mockedData = [
   {
