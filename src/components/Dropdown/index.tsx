@@ -1,16 +1,25 @@
 import { Pressable, Modal, StyleSheet, View, ScrollView } from 'react-native';
 import React, { useState } from 'react';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
+import { HEIGHT, WIDTH } from 'src/constants/dimentions';
 import { scaling } from 'src/styles/scaling';
 import {
   black,
   colorError,
+  greySemiTransarent,
   greyLight,
   primary,
   primaryTransparent,
+  primarySemiTransparent,
   white,
 } from 'src/styles/colors';
 import { Typography } from '../Typography';
 import { DropdownItem } from './DropdownItem';
+import { DashedCircle } from 'src/components/Decorators/DashedCircle';
 import { ArrowDown, ErrorIcon, CloseIcon } from 'src/assets/svg';
 
 type TProps = {
@@ -32,11 +41,34 @@ export const Dropdown = ({
 }: TProps): JSX.Element => {
   const [opened, setOpened] = useState(false);
 
-  const handleToggleOpened = () => setOpened(v => !v);
+  const handleToggleOpened = () => {
+    if (opened) {
+      handleAnimationClose();
+      setTimeout(() => setOpened(v => !v), 300);
+    } else {
+      setOpened(v => !v);
+      handleAnimationOpen();
+    }
+  };
 
   const handlePress = (v: string) => () => {
     onItemPress(v);
     handleToggleOpened();
+  };
+
+  const widthValue = useSharedValue(0);
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      opacity: widthValue.value,
+    };
+  });
+
+  const handleAnimationOpen = () => {
+    widthValue.value = withTiming(1, { duration: 300 });
+  };
+  const handleAnimationClose = () => {
+    widthValue.value = withTiming(0, { duration: 300 });
   };
 
   return (
@@ -68,8 +100,8 @@ export const Dropdown = ({
         </View>
       ) : null}
       <Modal visible={opened} transparent>
-        <View style={styles.modal}>
-          <ScrollView style={styles.contentWrapper}>
+        <Animated.View style={[styles.modalView, animatedStyles]}>
+          <View style={styles.contentWrapper}>
             <Pressable onPress={handleToggleOpened}>
               <CloseIcon
                 fill={black}
@@ -80,15 +112,27 @@ export const Dropdown = ({
             <Typography centered capitalize color={black} size="22">
               {label || ''}
             </Typography>
-            {data.map(i => (
-              <DropdownItem
-                onPress={handlePress(i[diplayByValue])}
-                value={i[diplayByValue]}
-                key={i[diplayByValue]}
-              />
-            ))}
-          </ScrollView>
-        </View>
+            <ScrollView contentContainerStyle={{ zIndex: 99 }}>
+              {data.map(i => (
+                <DropdownItem
+                  onPress={handlePress(i[diplayByValue])}
+                  value={i[diplayByValue]}
+                  key={i[diplayByValue]}
+                />
+              ))}
+            </ScrollView>
+            <DashedCircle
+              size={scaling.hs(150)}
+              style={styles.circleOne}
+              color={primarySemiTransparent}
+            />
+            <DashedCircle
+              size={scaling.hs(250)}
+              style={styles.circleTwo}
+              color={primarySemiTransparent}
+            />
+          </View>
+        </Animated.View>
       </Modal>
     </View>
   );
@@ -122,14 +166,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: scaling.hs(20),
   },
   contentWrapper: {
-    width: '60%',
-    maxHeight: '60%',
+    width: '70%',
+    maxHeight: '70%',
     backgroundColor: white,
+    borderRadius: 20,
+    overflow: 'hidden',
   },
-  modal: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: greyLight,
+  modalView: {
+    width: WIDTH,
+    height: HEIGHT,
+    backgroundColor: greySemiTransarent,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -144,5 +190,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: primaryTransparent,
     borderRadius: scaling.vs(14),
+  },
+  circleOne: {
+    top: scaling.vs(-90),
+    left: scaling.vs(-90),
+  },
+  circleTwo: {
+    top: scaling.vs(130),
+    right: scaling.hs(-150),
   },
 });

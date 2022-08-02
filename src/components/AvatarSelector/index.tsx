@@ -16,7 +16,7 @@ type TProps = {
   style?: ViewStyle;
 };
 
-const AvatarSelector = ({ onPress, img, style }: TProps) => {
+export const AvatarSelector = ({ onPress, img, style }: TProps) => {
   return (
     <View style={[styles.wrapper, style]}>
       <TouchableHighlight
@@ -44,8 +44,6 @@ const AvatarSelector = ({ onPress, img, style }: TProps) => {
     </View>
   );
 };
-
-export default AvatarSelector;
 
 const styles = StyleSheet.create({
   wrapper: {
