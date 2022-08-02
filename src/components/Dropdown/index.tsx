@@ -1,9 +1,15 @@
 import { Pressable, Modal, StyleSheet, View, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
 import { scaling } from 'src/styles/scaling';
 import {
   black,
   colorError,
+  greySemiTransarent,
   greyLight,
   primary,
   primaryTransparent,
@@ -12,6 +18,7 @@ import {
 import { Typography } from '../Typography';
 import { DropdownItem } from './DropdownItem';
 import { ArrowDown, ErrorIcon, CloseIcon } from 'src/assets/svg';
+import { HEIGHT, WIDTH } from 'src/constants/dimentions';
 
 type TProps = {
   data: Record<string, any>;
@@ -32,11 +39,34 @@ export const Dropdown = ({
 }: TProps): JSX.Element => {
   const [opened, setOpened] = useState(false);
 
-  const handleToggleOpened = () => setOpened(v => !v);
+  const handleToggleOpened = () => {
+    if (opened) {
+      handleAnimationClose();
+      setTimeout(() => setOpened(v => !v), 300);
+    } else {
+      setOpened(v => !v);
+      handleAnimationOpen();
+    }
+  };
 
   const handlePress = (v: string) => () => {
     onItemPress(v);
     handleToggleOpened();
+  };
+
+  const widthValue = useSharedValue(0);
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      opacity: widthValue.value,
+    };
+  });
+
+  const handleAnimationOpen = () => {
+    widthValue.value = withTiming(1, { duration: 300 });
+  };
+  const handleAnimationClose = () => {
+    widthValue.value = withTiming(0, { duration: 300 });
   };
 
   return (
@@ -68,7 +98,7 @@ export const Dropdown = ({
         </View>
       ) : null}
       <Modal visible={opened} transparent>
-        <View style={styles.modal}>
+        <Animated.View style={[styles.modalView, animatedStyles]}>
           <ScrollView style={styles.contentWrapper}>
             <Pressable onPress={handleToggleOpened}>
               <CloseIcon
@@ -88,7 +118,7 @@ export const Dropdown = ({
               />
             ))}
           </ScrollView>
-        </View>
+        </Animated.View>
       </Modal>
     </View>
   );
@@ -122,14 +152,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: scaling.hs(20),
   },
   contentWrapper: {
-    width: '60%',
-    maxHeight: '60%',
+    width: '70%',
+    maxHeight: '70%',
     backgroundColor: white,
+    borderRadius: 20,
   },
-  modal: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: greyLight,
+  modalView: {
+    width: WIDTH,
+    height: HEIGHT,
+    backgroundColor: greySemiTransarent,
     alignItems: 'center',
     justifyContent: 'center',
   },

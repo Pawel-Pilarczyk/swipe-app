@@ -17,10 +17,6 @@ const mockedData = [
     key: 'female',
     value: 'Female',
   },
-  {
-    key: 'genderFluid',
-    value: 'Gender Fluid',
-  },
 ];
 
 export const UserDetails = () => {
